@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Glow Up Plan">
+<meta name="theme-color" content="#0d0d0d">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<title>Glow Up Plan 2026–2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="noise"></div>
+
+<header>
+  <div class="header-inner">
+    <div class="header-left">
+      <span class="logo-mark">✦</span>
+      <div>
+        <h1>Glow Up Plan</h1>
+        <p class="header-sub">Juin 2026 → Juin 2027</p>
+      </div>
+    </div>
+    <div class="progress-ring-wrap" id="global-progress-wrap" title="Progression globale">
+      <svg class="progress-ring" width="52" height="52">
+        <circle class="ring-bg" cx="26" cy="26" r="21"/>
+        <circle class="ring-fill" id="global-ring" cx="26" cy="26" r="21"/>
+      </svg>
+      <span class="ring-label" id="global-pct">0%</span>
+    </div>
+  </div>
+  <nav class="cat-filter" id="cat-filter">
+    <button class="cf-btn active" data-cat="all">Tout</button>
+    <button class="cf-btn" data-cat="physique">Corps</button>
+    <button class="cf-btn" data-cat="mental">Mental</button>
+    <button class="cf-btn" data-cat="sport">Sport</button>
+    <button class="cf-btn" data-cat="lifestyle">Lifestyle</button>
+    <button class="cf-btn" data-cat="perso">Perso</button>
+  </nav>
+</header>
+
+<main id="main">
+  <div class="month-grid" id="month-grid"></div>
+</main>
+
+<div class="drawer-overlay" id="drawer-overlay"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-header">
+    <div>
+      <p class="drawer-month-label" id="d-label"></p>
+      <h2 class="drawer-title" id="d-title"></h2>
+    </div>
+    <button class="drawer-close" id="drawer-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="drawer-body" id="drawer-body"></div>
+</aside>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
