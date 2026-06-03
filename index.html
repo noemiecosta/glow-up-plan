@@ -5,64 +5,1174 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Glow Up Plan">
-<meta name="theme-color" content="#0d0d0d">
+<meta name="apple-mobile-web-app-title" content="Glow Up">
+<meta name="theme-color" content="#0a0a0a">
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icons/icon-192.png">
-<title>Glow Up Plan 2026–2027</title>
+<title>Glow Up Plan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0a;
+  --bg2: #111111;
+  --bg3: #181818;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --text: #f0ece4;
+  --text2: rgba(240,236,228,0.55);
+  --text3: rgba(240,236,228,0.3);
+  --gold: #c9a96e;
+  --gold2: #e8c98a;
+  --rose: #d4537e;
+  --green: #5dca96;
+  --purple: #9b8ee8;
+  --blue: #5fa8d3;
+  --orange: #e07a5f;
+}
+
+html { background: var(--bg); }
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 0 60px;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 60% 30%, rgba(201,169,110,0.13) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 20% 70%, rgba(212,83,126,0.09) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(93,202,150,0.07) 0%, transparent 50%);
+}
+
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+.hero-orb-1 { width: 400px; height: 400px; background: rgba(201,169,110,0.12); top: -100px; right: -100px; }
+.hero-orb-2 { width: 300px; height: 300px; background: rgba(212,83,126,0.1); bottom: 100px; left: -80px; }
+.hero-orb-3 { width: 250px; height: 250px; background: rgba(155,142,232,0.08); top: 40%; right: 10%; }
+
+.hero-content {
+  position: relative;
+  padding: 0 28px;
+}
+
+.hero-eyebrow {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.6;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(52px, 14vw, 82px);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px, 5vw, 26px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text2);
+  margin-bottom: 36px;
+  letter-spacing: 0.02em;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 0;
+  margin-bottom: 40px;
+}
+.hero-stat {
+  flex: 1;
+  padding: 16px 20px;
+  border: 1px solid var(--border2);
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(8px);
+  text-align: center;
+  border-right: none;
+}
+.hero-stat:first-child { border-radius: 12px 0 0 12px; }
+.hero-stat:last-child { border-radius: 0 12px 12px 0; border-right: 1px solid var(--border2); }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+
+.hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text2);
+  cursor: pointer;
+  animation: bounce 2s ease-in-out infinite;
+}
+.hero-cta-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* ── PROGRESS BAR HERO ── */
+.hero-progress {
+  margin-bottom: 32px;
+}
+.hero-progress-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+.hero-progress-label span { color: var(--gold); font-weight: 500; }
+.progress-track {
+  height: 3px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold2) 100%);
+  border-radius: 2px;
+  transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+  width: 0%;
+}
+
+/* ── SECTION TITLE ── */
+.section-header {
+  padding: 60px 28px 24px;
+}
+.section-eyebrow {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-eyebrow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(201,169,110,0.4), transparent);
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text);
+}
+
+/* ── FILTER PILLS ── */
+.filter-bar {
+  padding: 0 28px 28px;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.filter-bar::-webkit-scrollbar { display: none; }
+.pill {
+  flex-shrink: 0;
+  padding: 7px 16px;
+  border-radius: 100px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.2s;
+  -webkit-appearance: none;
+}
+.pill.active, .pill:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #0a0a0a;
+  font-weight: 500;
+}
+
+/* ── MONTH CARDS ── */
+.cards-container {
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 80px;
+}
+
+.month-card {
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.month-card:active { transform: scale(0.98); }
+
+.card-header {
+  padding: 22px 22px 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  position: relative;
+}
+
+.card-accent-bar {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  border-radius: 20px 0 0 0;
+}
+
+.card-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  font-weight: 300;
+  line-height: 1;
+  color: rgba(255,255,255,0.06);
+  flex-shrink: 0;
+  margin-top: -4px;
+  width: 44px;
+}
+
+.card-info { flex: 1; min-width: 0; }
+.card-month {
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 4px;
+}
+.card-theme {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.card-emoji {
+  font-size: 26px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.card-progress-row {
+  padding: 0 22px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.card-progress-bar {
+  flex: 1;
+  height: 2px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.card-progress-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.6s ease;
+  width: 0%;
+}
+.card-progress-pct {
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--text3);
+  flex-shrink: 0;
+  width: 32px;
+  text-align: right;
+}
+
+.card-cats {
+  padding: 0 22px 18px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.cat-chip {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+  border: 1px solid;
+  opacity: 0.7;
+}
+
+.card-preview {
+  padding: 14px 22px 18px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.preview-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text2);
+  line-height: 1.4;
+}
+.preview-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── MODAL / DRAWER ── */
+.overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(6px);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.overlay.open { opacity: 1; pointer-events: all; }
+
+.drawer {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  max-height: 92dvh;
+  background: #111;
+  border-radius: 24px 24px 0 0;
+  z-index: 101;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.32,0.72,0,1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.drawer.open { transform: translateY(0); }
+
+.drawer-handle {
+  width: 36px; height: 4px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 2px;
+  margin: 14px auto 0;
+  flex-shrink: 0;
+}
+
+.drawer-scroll {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+  padding: 0 24px 48px;
+}
+
+.drawer-top {
+  padding: 20px 0 24px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 28px;
+}
+.drawer-eyebrow {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 6px;
+}
+.drawer-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 34px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+.drawer-sub {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text3);
+  font-style: italic;
+}
+
+.drawer-section-title {
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.drawer-section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── GOAL BLOCKS ── */
+.goal-block {
+  margin-bottom: 24px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.goal-block-header {
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.goal-cat-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.goal-cat-label {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text3);
+  flex: 1;
+}
+.goal-block-title {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text);
+  padding: 14px 16px 6px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 17px;
+}
+
+/* ── CHECKLIST ITEMS ── */
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  border-top: 1px solid var(--border);
+}
+.check-item:hover { background: rgba(255,255,255,0.02); }
+
+.check-box {
+  width: 20px; height: 20px;
+  border-radius: 6px;
+  border: 1.5px solid rgba(255,255,255,0.18);
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+  background: transparent;
+}
+.check-item.done .check-box {
+  border-color: transparent;
+  background: var(--gold);
+}
+.check-box-tick {
+  opacity: 0;
+  font-size: 12px;
+  color: #0a0a0a;
+  font-weight: 700;
+  transition: opacity 0.15s;
+}
+.check-item.done .check-box-tick { opacity: 1; }
+
+.check-text {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text2);
+  line-height: 1.5;
+  transition: all 0.2s;
+  flex: 1;
+}
+.check-item.done .check-text {
+  color: var(--text3);
+  text-decoration: line-through;
+  text-decoration-color: rgba(255,255,255,0.2);
+}
+
+/* ── WEEKLY SCHEDULE ── */
+.weekly-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+.day-row {
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  overflow: hidden;
+}
+.day-header {
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.day-name {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text2);
+  width: 80px;
+  flex-shrink: 0;
+}
+.day-tasks-preview {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+.day-check-count {
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--text3);
+  flex-shrink: 0;
+}
+.day-tasks-list {
+  display: none;
+  padding: 0 14px 12px;
+  flex-direction: column;
+  gap: 6px;
+}
+.day-row.expanded .day-tasks-list { display: flex; }
+.day-row.expanded .day-header {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2px;
+}
+.day-task-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text2);
+  padding: 6px 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.day-task-item.done { color: var(--text3); text-decoration: line-through; text-decoration-color: rgba(255,255,255,0.2); }
+.day-task-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--border2);
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.day-task-item.done .day-task-dot { background: var(--gold); }
+
+/* ── BOTTOM TABS ── */
+.bottom-nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(10,10,10,0.92);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border);
+  padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
+  display: flex;
+  z-index: 50;
+}
+.tab-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: var(--text3);
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.tab-btn.active { color: var(--gold); }
+.tab-icon { font-size: 20px; line-height: 1; }
+
+/* ── VISION BOARD VIEW ── */
+#view-vision { display: none; }
+#view-vision.active { display: block; }
+#view-plan { display: block; }
+#view-plan.hidden { display: none; }
+
+.vision-header {
+  padding: 60px 28px 32px;
+}
+.vision-grid {
+  padding: 0 16px 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.vision-card {
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.vision-card:active { transform: scale(0.97); }
+.vision-card.span2 { grid-column: span 2; }
+.vision-card:hover { border-color: var(--border2); }
+.vision-emoji { font-size: 28px; }
+.vision-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.3;
+}
+.vision-desc {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text3);
+  line-height: 1.5;
+}
+.vision-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 100px;
+  margin-top: 4px;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.month-card {
+  animation: fadeUp 0.5s ease both;
+}
+.month-card:nth-child(1) { animation-delay: 0.05s; }
+.month-card:nth-child(2) { animation-delay: 0.1s; }
+.month-card:nth-child(3) { animation-delay: 0.15s; }
+.month-card:nth-child(4) { animation-delay: 0.2s; }
+.month-card:nth-child(5) { animation-delay: 0.25s; }
+.month-card:nth-child(6) { animation-delay: 0.3s; }
+.month-card:nth-child(7) { animation-delay: 0.35s; }
+.month-card:nth-child(8) { animation-delay: 0.4s; }
+.month-card:nth-child(9) { animation-delay: 0.45s; }
+.month-card:nth-child(10) { animation-delay: 0.5s; }
+.month-card:nth-child(11) { animation-delay: 0.55s; }
+.month-card:nth-child(12) { animation-delay: 0.6s; }
+
+.hidden-cat { display: none !important; }
+</style>
 </head>
 <body>
 
-<div class="noise"></div>
+<!-- ═══ VIEW : PLAN ═══ -->
+<div id="view-plan">
 
-<header>
-  <div class="header-inner">
-    <div class="header-left">
-      <span class="logo-mark">✦</span>
-      <div>
-        <h1>Glow Up Plan</h1>
-        <p class="header-sub">Juin 2026 → Juin 2027</p>
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Juin 2026 → Juin 2027</p>
+      <h1 class="hero-title">Ton <em>Glow</em><br>Up Plan</h1>
+      <p class="hero-subtitle">La vie que tu mérites, étape par étape</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="stat-num">12</div>
+          <div class="stat-label">Mois</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-num" id="stat-goals">50+</div>
+          <div class="stat-label">Objectifs</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-num" id="stat-pct">0%</div>
+          <div class="stat-label">Complété</div>
+        </div>
+      </div>
+      <div class="hero-progress">
+        <div class="hero-progress-label">
+          <span style="color:var(--text3)">Progression globale</span>
+          <span id="hero-pct-label">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="hero-bar"></div>
+        </div>
+      </div>
+      <div class="hero-cta" onclick="document.querySelector('.section-header').scrollIntoView({behavior:'smooth'})">
+        <div class="hero-cta-arrow">↓</div>
+        Voir le plan
       </div>
     </div>
-    <div class="progress-ring-wrap" id="global-progress-wrap" title="Progression globale">
-      <svg class="progress-ring" width="52" height="52">
-        <circle class="ring-bg" cx="26" cy="26" r="21"/>
-        <circle class="ring-fill" id="global-ring" cx="26" cy="26" r="21"/>
-      </svg>
-      <span class="ring-label" id="global-pct">0%</span>
-    </div>
+  </section>
+
+  <div class="section-header">
+    <p class="section-eyebrow">Ton parcours</p>
+    <h2 class="section-title">12 mois pour tout changer</h2>
   </div>
-  <nav class="cat-filter" id="cat-filter">
-    <button class="cf-btn active" data-cat="all">Tout</button>
-    <button class="cf-btn" data-cat="physique">Corps</button>
-    <button class="cf-btn" data-cat="mental">Mental</button>
-    <button class="cf-btn" data-cat="sport">Sport</button>
-    <button class="cf-btn" data-cat="lifestyle">Lifestyle</button>
-    <button class="cf-btn" data-cat="perso">Perso</button>
-  </nav>
-</header>
 
-<main id="main">
-  <div class="month-grid" id="month-grid"></div>
-</main>
+  <div class="filter-bar" id="filter-bar">
+    <button class="pill active" data-cat="all">Tout</button>
+    <button class="pill" data-cat="physique">Corps</button>
+    <button class="pill" data-cat="mental">Mental</button>
+    <button class="pill" data-cat="sport">Sport</button>
+    <button class="pill" data-cat="alimentation">Nutrition</button>
+    <button class="pill" data-cat="lifestyle">Lifestyle</button>
+    <button class="pill" data-cat="perso">Perso</button>
+  </div>
 
-<div class="drawer-overlay" id="drawer-overlay"></div>
-<aside class="drawer" id="drawer">
-  <div class="drawer-header">
-    <div>
-      <p class="drawer-month-label" id="d-label"></p>
+  <div class="cards-container" id="cards-container"></div>
+
+</div>
+
+<!-- ═══ VIEW : VISION ═══ -->
+<div id="view-vision">
+  <div class="vision-header">
+    <p class="section-eyebrow">Dans 1 an</p>
+    <h2 class="section-title">Ta vie de rêve</h2>
+  </div>
+  <div class="vision-grid" id="vision-grid"></div>
+</div>
+
+<!-- OVERLAY + DRAWER -->
+<div class="overlay" id="overlay"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-handle"></div>
+  <div class="drawer-scroll" id="drawer-scroll">
+    <div class="drawer-top">
+      <p class="drawer-eyebrow" id="d-eyebrow"></p>
       <h2 class="drawer-title" id="d-title"></h2>
+      <p class="drawer-sub" id="d-sub"></p>
     </div>
-    <button class="drawer-close" id="drawer-close" aria-label="Fermer">✕</button>
+    <p class="drawer-section-title">Objectifs du mois</p>
+    <div id="d-goals"></div>
+    <p class="drawer-section-title" style="margin-top:8px">Programme hebdo type</p>
+    <div class="weekly-grid" id="d-weekly"></div>
   </div>
-  <div class="drawer-body" id="drawer-body"></div>
-</aside>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <button class="tab-btn active" id="tab-plan" onclick="switchTab('plan')">
+    <span class="tab-icon">◈</span>Plan
+  </button>
+  <button class="tab-btn" id="tab-vision" onclick="switchTab('vision')">
+    <span class="tab-icon">✦</span>Vision
+  </button>
+</nav>
 
 <script src="data.js"></script>
-<script src="app.js"></script>
+<script>
+// ── STATE ──
+let state = JSON.parse(localStorage.getItem('gup_state') || '{}');
+// state[monthId][goalIdx][itemIdx] = true/false
+// state['weekly'][monthId][dayIdx][taskIdx] = true/false
+
+function save() { localStorage.setItem('gup_state', JSON.stringify(state)); }
+
+function getMonthProgress(m) {
+  let total = 0, done = 0;
+  m.goals.forEach((g, gi) => {
+    g.items.forEach((_, ii) => {
+      total++;
+      if (state[m.id]?.[gi]?.[ii]) done++;
+    });
+  });
+  return total === 0 ? 0 : Math.round((done / total) * 100);
+}
+
+function getGlobalProgress() {
+  let total = 0, done = 0;
+  MONTHS.forEach(m => {
+    m.goals.forEach((g, gi) => {
+      g.items.forEach((_, ii) => {
+        total++;
+        if (state[m.id]?.[gi]?.[ii]) done++;
+      });
+    });
+  });
+  return total === 0 ? 0 : Math.round((done / total) * 100);
+}
+
+// ── CAT CONFIG ──
+const CAT_COLORS = {
+  physique: '#e07a5f', mental: '#9b8ee8', sport: '#5dca96',
+  alimentation: '#7bb042', lifestyle: '#c9a96e', perso: '#5fa8d3'
+};
+const CAT_LABELS = {
+  physique: 'Corps & beauté', mental: 'Mental', sport: 'Sport',
+  alimentation: 'Nutrition', lifestyle: 'Lifestyle', perso: 'Développement perso'
+};
+
+// ── RENDER CARDS ──
+function renderCards(filter = 'all') {
+  const container = document.getElementById('cards-container');
+  container.innerHTML = '';
+  MONTHS.forEach((m, idx) => {
+    const match = filter === 'all' || m.cats.includes(filter);
+    if (!match) return;
+    const pct = getMonthProgress(m);
+    const card = document.createElement('div');
+    card.className = 'month-card';
+    card.style.animationDelay = (idx * 0.05) + 's';
+
+    // cats chips html
+    const catsHtml = m.cats.map(c => `
+      <span class="cat-chip" style="color:${CAT_COLORS[c]};border-color:${CAT_COLORS[c]}40">
+        ${CAT_LABELS[c]?.split(' ')[0] || c}
+      </span>`).join('');
+
+    // preview : first goal's first 2 items
+    const previewItems = m.goals[0]?.items.slice(0, 2) || [];
+    const previewHtml = previewItems.map(it => `
+      <div class="preview-item">
+        <span class="preview-dot" style="background:${m.accent}"></span>
+        <span>${it}</span>
+      </div>`).join('');
+
+    card.innerHTML = `
+      <div class="card-accent-bar" style="background:${m.accent}"></div>
+      <div class="card-header">
+        <div class="card-num">0${m.id}</div>
+        <div class="card-info">
+          <p class="card-month">${m.month}</p>
+          <p class="card-theme">${m.theme}</p>
+        </div>
+        <div class="card-emoji">${m.emoji}</div>
+      </div>
+      <div class="card-progress-row">
+        <div class="card-progress-bar">
+          <div class="card-progress-fill" style="background:${m.accent};width:${pct}%"></div>
+        </div>
+        <span class="card-progress-pct">${pct}%</span>
+      </div>
+      <div class="card-cats">${catsHtml}</div>
+      <div class="card-preview">${previewHtml}</div>
+    `;
+    card.addEventListener('click', () => openDrawer(m));
+    container.appendChild(card);
+  });
+}
+
+// ── DRAWER ──
+let currentMonth = null;
+
+function openDrawer(m) {
+  currentMonth = m;
+  document.getElementById('d-eyebrow').textContent = m.month + ' · Mois ' + m.id;
+  document.getElementById('d-title').textContent = m.theme;
+  document.getElementById('d-sub').textContent = m.emoji + '  ' + m.cats.map(c => CAT_LABELS[c]).join(' · ');
+
+  // Goals
+  const goalsEl = document.getElementById('d-goals');
+  goalsEl.innerHTML = '';
+  m.goals.forEach((g, gi) => {
+    const block = document.createElement('div');
+    block.className = 'goal-block';
+    const color = CAT_COLORS[g.cat] || '#c9a96e';
+    let itemsHtml = g.items.map((item, ii) => {
+      const done = !!state[m.id]?.[gi]?.[ii];
+      return `
+        <div class="check-item ${done ? 'done' : ''}" data-gi="${gi}" data-ii="${ii}">
+          <div class="check-box"><span class="check-box-tick">✓</span></div>
+          <span class="check-text">${item}</span>
+        </div>`;
+    }).join('');
+    block.innerHTML = `
+      <div class="goal-block-header">
+        <span class="goal-cat-dot" style="background:${color}"></span>
+        <span class="goal-cat-label">${CAT_LABELS[g.cat] || g.cat}</span>
+      </div>
+      <div class="goal-block-title">${g.label}</div>
+      ${itemsHtml}
+    `;
+    block.querySelectorAll('.check-item').forEach(el => {
+      el.addEventListener('click', () => {
+        const gi2 = +el.dataset.gi, ii2 = +el.dataset.ii;
+        if (!state[m.id]) state[m.id] = {};
+        if (!state[m.id][gi2]) state[m.id][gi2] = {};
+        state[m.id][gi2][ii2] = !state[m.id][gi2][ii2];
+        save();
+        el.classList.toggle('done', state[m.id][gi2][ii2]);
+        updateProgress(m);
+      });
+    });
+    goalsEl.appendChild(block);
+  });
+
+  // Weekly
+  const weeklyEl = document.getElementById('d-weekly');
+  weeklyEl.innerHTML = '';
+  m.weekly.forEach((day, di) => {
+    const row = document.createElement('div');
+    row.className = 'day-row';
+    const tasksPreview = day.tasks.slice(0, 2).join(' · ');
+    const wKey = 'w_' + m.id;
+    const doneCount = day.tasks.filter((_, ti) => state[wKey]?.[di]?.[ti]).length;
+    const tasksHtml = day.tasks.map((t, ti) => {
+      const done = !!state[wKey]?.[di]?.[ti];
+      return `<div class="day-task-item ${done ? 'done' : ''}" data-di="${di}" data-ti="${ti}">
+        <span class="day-task-dot"></span>${t}
+      </div>`;
+    }).join('');
+    row.innerHTML = `
+      <div class="day-header">
+        <span class="day-name">${day.label}</span>
+        <span class="day-tasks-preview">${tasksPreview}</span>
+        <span class="day-check-count">${doneCount}/${day.tasks.length}</span>
+      </div>
+      <div class="day-tasks-list">${tasksHtml}</div>
+    `;
+    row.querySelector('.day-header').addEventListener('click', () => {
+      row.classList.toggle('expanded');
+    });
+    row.querySelectorAll('.day-task-item').forEach(el => {
+      el.addEventListener('click', e => {
+        e.stopPropagation();
+        const di2 = +el.dataset.di, ti2 = +el.dataset.ti;
+        const wk = 'w_' + m.id;
+        if (!state[wk]) state[wk] = {};
+        if (!state[wk][di2]) state[wk][di2] = {};
+        state[wk][di2][ti2] = !state[wk][di2][ti2];
+        save();
+        el.classList.toggle('done', state[wk][di2][ti2]);
+        const cnt = row.querySelector('.day-check-count');
+        const total = day.tasks.length;
+        const newDone = day.tasks.filter((_, ti) => state[wk]?.[di2]?.[ti]).length;
+        cnt.textContent = newDone + '/' + total;
+      });
+    });
+    weeklyEl.appendChild(row);
+  });
+
+  document.getElementById('overlay').classList.add('open');
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('drawer-scroll').scrollTop = 0;
+}
+
+function updateProgress(m) {
+  const pct = getMonthProgress(m);
+  // update cards
+  document.querySelectorAll('.month-card').forEach(card => {
+    const themeEl = card.querySelector('.card-theme');
+    if (themeEl && themeEl.textContent === m.theme) {
+      card.querySelector('.card-progress-fill').style.width = pct + '%';
+      card.querySelector('.card-progress-pct').textContent = pct + '%';
+    }
+  });
+  // update global
+  const global = getGlobalProgress();
+  document.getElementById('stat-pct').textContent = global + '%';
+  document.getElementById('hero-pct-label').textContent = global + '%';
+  document.getElementById('hero-bar').style.width = global + '%';
+}
+
+function closeDrawer() {
+  document.getElementById('overlay').classList.remove('open');
+  document.getElementById('drawer').classList.remove('open');
+  // refresh cards
+  const activePill = document.querySelector('.pill.active');
+  renderCards(activePill?.dataset.cat || 'all');
+  refreshHero();
+}
+
+function refreshHero() {
+  const g = getGlobalProgress();
+  document.getElementById('stat-pct').textContent = g + '%';
+  document.getElementById('hero-pct-label').textContent = g + '%';
+  document.getElementById('hero-bar').style.width = g + '%';
+}
+
+document.getElementById('overlay').addEventListener('click', closeDrawer);
+
+// ── FILTERS ──
+document.getElementById('filter-bar').addEventListener('click', e => {
+  const btn = e.target.closest('.pill');
+  if (!btn) return;
+  document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCards(btn.dataset.cat);
+});
+
+// ── VISION BOARD ──
+const VISION_ITEMS = [
+  { emoji: '🏃‍♀️', label: 'Semi-marathon', desc: 'Annecy, avril 2027 · < 1h50', cat: 'sport', color: '#5dca96', span: false },
+  { emoji: '💪', label: 'Fessiers & corps sculpté', desc: 'Musculation 3×/sem', cat: 'physique', color: '#e07a5f', span: false },
+  { emoji: '🧘‍♀️', label: 'Grand écart', desc: 'Souplesse totale', cat: 'sport', color: '#5dca96', span: false },
+  { emoji: '✨', label: 'Peau lumineuse', desc: 'Skincare quotidienne · acné traitée', cat: 'physique', color: '#e07a5f', span: false },
+  { emoji: '🏍️', label: 'Passerelle moto A', desc: 'Fév. 2027 · enduro & piste', cat: 'perso', color: '#5fa8d3', span: true },
+  { emoji: '🌍', label: 'Voyages & aventures', desc: 'Sardaigne, et bien plus', cat: 'lifestyle', color: '#c9a96e', span: false },
+  { emoji: '💛', label: 'Sérénité intérieure', desc: 'Plus d\'anxiété · confiance en soi', cat: 'mental', color: '#9b8ee8', span: false },
+  { emoji: '💰', label: 'Budget maîtrisé', desc: 'Épargne chaque mois', cat: 'lifestyle', color: '#c9a96e', span: false },
+  { emoji: '🗣️', label: 'Anglais courant', desc: 'B2 oral & écrit', cat: 'perso', color: '#5fa8d3', span: false },
+  { emoji: '💃', label: 'Pole dance', desc: 'Sensualité & force', cat: 'physique', color: '#d4537e', span: false },
+  { emoji: '🥗', label: 'Alimentation SOPK', desc: 'Anti-inflammatoire · rapport sain', cat: 'alimentation', color: '#7bb042', span: true },
+  { emoji: '❤️', label: 'Relation apaisée', desc: 'Sereine avec Max · indépendante', cat: 'mental', color: '#9b8ee8', span: false },
+  { emoji: '💅', label: 'Style affirmé', desc: 'Habillée avec intention chaque jour', cat: 'physique', color: '#e07a5f', span: false },
+];
+
+function renderVision() {
+  const grid = document.getElementById('vision-grid');
+  grid.innerHTML = '';
+  VISION_ITEMS.forEach(v => {
+    const card = document.createElement('div');
+    card.className = 'vision-card' + (v.span ? ' span2' : '');
+    card.innerHTML = `
+      <div class="vision-emoji">${v.emoji}</div>
+      <div class="vision-label">${v.label}</div>
+      <div class="vision-desc">${v.desc}</div>
+      <span class="vision-tag" style="background:${v.color}22;color:${v.color};border:1px solid ${v.color}44">${CAT_LABELS[v.cat]?.split(' ')[0] || v.cat}</span>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// ── TAB SWITCH ──
+function switchTab(tab) {
+  document.getElementById('tab-plan').classList.toggle('active', tab === 'plan');
+  document.getElementById('tab-vision').classList.toggle('active', tab === 'vision');
+  const planEl = document.getElementById('view-plan');
+  const visEl = document.getElementById('view-vision');
+  if (tab === 'plan') {
+    planEl.style.display = 'block';
+    visEl.style.display = 'none';
+  } else {
+    planEl.style.display = 'none';
+    visEl.style.display = 'block';
+  }
+}
+
+// ── INIT ──
+renderCards();
+renderVision();
+refreshHero();
+
+// count total goals
+let total = 0;
+MONTHS.forEach(m => m.goals.forEach(g => total += g.items.length));
+document.getElementById('stat-goals').textContent = total;
+</script>
+<script>if("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js");</script>
 </body>
 </html>
