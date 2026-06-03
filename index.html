@@ -11,7 +11,7 @@
 <title>Glow Up Plan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght=200;300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -847,7 +847,7 @@ body {
 </div>
 
 <!-- ═══ VIEW : VISION ═══ -->
-<div id="view-vision" style="display:none">
+<div id="view-vision">
   <div class="vision-header">
     <p class="section-eyebrow">Dans 1 an</p>
     <h2 class="section-title">Ta vie de rêve</h2>
@@ -884,13 +884,14 @@ body {
 
 
 <script>
+// ── DATA CONFIG ──
 const MONTHS = [
   {
     id: 1, month: "Juin 2026", theme: "Les fondations", emoji: "🌱",
-    cats: ["physique","mental","lifestyle"], accent: "#c9a96e",
+    cats: ["physique","mental","sport","lifestyle"], accent: "#c9a96e",
     goals: [
       { cat: "physique", label: "Lancer la routine beauté", items: [
-        "Acheter les produits skincare de base (nettoyant, sérum, SPF)",
+        "Acheter les produits skincare de base (netvoyant, sérum, SPF)",
         "Skincare matin + soir sans exception",
         "1er RDV coiffeur : bilan boucles + soins",
         "Masque capillaire chaque dimanche",
@@ -907,7 +908,7 @@ const MONTHS = [
         "S'inscrire en salle de sport",
         "3 séances salle cette semaine (haut, bas, full body)",
         "1 sortie running 20–30 min",
-        "Bilan de mobilité : tester sa souplesse actuelle"
+        "Bilan de mobility : tester sa souplesse actuelle"
       ]},
       { cat: "lifestyle", label: "Reprendre le contrôle du quotidien", items: [
         "Définir une heure de coucher fixe (ex : 23h)",
@@ -1300,20 +1301,36 @@ const CAT_COLORS = {
   physique: '#e07a5f', mental: '#9b8ee8', sport: '#5dca96',
   alimentation: '#7bb042', lifestyle: '#c9a96e', perso: '#5fa8d3'
 };
+
 const CAT_LABELS = {
-  physique: 'Corps & beauté', mental: 'Mental', sport: 'Sport',
-  alimentation: 'Nutrition', lifestyle: 'Lifestyle', perso: 'Développement perso'
+  physique: 'Corps', mental: 'Mental', sport: 'Sport',
+  alimentation: 'Nutrition', lifestyle: 'Lifestyle', perso: 'Perso'
 };
 
-</script>
-<script>
-// ── STATE ──
+const VISION_ITEMS = [
+  { emoji: '🏃‍♀️', label: 'Semi-marathon', desc: 'Annecy, avril 2027 · < 1h50', cat: 'sport', color: '#5dca96', span: false },
+  { emoji: '💪', label: 'Fessiers & corps sculpté', desc: 'Musculation 3×/sem', cat: 'physique', color: '#e07a5f', span: false },
+  { emoji: '🧘‍♀️', label: 'Grand écart', desc: 'Souplesse totale', cat: 'sport', color: '#5dca96', span: false },
+  { emoji: '✨', label: 'Peau lumineuse', desc: 'Skincare quotidienne · acné traitée', cat: 'physique', color: '#e07a5f', span: false },
+  { emoji: '🏍️', label: 'Passerelle moto A', desc: 'Fév. 2027 · enduro & piste', cat: 'perso', color: '#5fa8d3', span: true },
+  { emoji: '🌍', label: 'Voyages & aventures', desc: 'Sardaigne, et bien plus', cat: 'lifestyle', color: '#c9a96e', span: false },
+  { emoji: '💛', label: 'Sérénité intérieure', desc: 'Plus d\'anxiété · confiance en soi', cat: 'mental', color: '#9b8ee8', span: false },
+  { emoji: '💰', label: 'Budget maîtrisé', desc: 'Épargne chaque mois', cat: 'lifestyle', color: '#c9a96e', span: false },
+  { emoji: '🗣️', label: 'Anglais courant', desc: 'B2 oral & écrit', cat: 'perso', color: '#5fa8d3', span: false },
+  { emoji: '💃', label: 'Pole dance', desc: 'Sensualité & force', cat: 'physique', color: '#d4537e', span: false },
+  { emoji: '🥗', label: 'Alimentation SOPK', desc: 'Anti-inflammatoire · rapport sain', cat: 'alimentation', color: '#7bb042', span: true },
+  { emoji: '❤️', label: 'Relation apaisée', desc: 'Sereine avec Max · indépendante', cat: 'mental', color: '#9b8ee8', span: false },
+  { emoji: '💅', label: 'Style affirmé', desc: 'Habillée avec intention chaque jour', cat: 'physique', color: '#e07a5f', span: false },
+];
+
+// ── STATE & LOCALSTORAGE ──
 let state = JSON.parse(localStorage.getItem('gup_state') || '{}');
-// state[monthId][goalIdx][itemIdx] = true/false
-// state['weekly'][monthId][dayIdx][taskIdx] = true/false
 
-function save() { localStorage.setItem('gup_state', JSON.stringify(state)); }
+function save() { 
+  localStorage.setItem('gup_state', JSON.stringify(state)); 
+}
 
+// ── PROGRESS COMPUTATIONS ──
 function getMonthProgress(m) {
   let total = 0, done = 0;
   m.goals.forEach((g, gi) => {
@@ -1338,35 +1355,25 @@ function getGlobalProgress() {
   return total === 0 ? 0 : Math.round((done / total) * 100);
 }
 
-// ── CAT CONFIG ──
-const CAT_COLORS = {
-  physique: '#e07a5f', mental: '#9b8ee8', sport: '#5dca96',
-  alimentation: '#7bb042', lifestyle: '#c9a96e', perso: '#5fa8d3'
-};
-const CAT_LABELS = {
-  physique: 'Corps & beauté', mental: 'Mental', sport: 'Sport',
-  alimentation: 'Nutrition', lifestyle: 'Lifestyle', perso: 'Développement perso'
-};
-
-// ── RENDER CARDS ──
+// ── RENDERING ──
 function renderCards(filter = 'all') {
   const container = document.getElementById('cards-container');
   container.innerHTML = '';
+  
   MONTHS.forEach((m, idx) => {
     const match = filter === 'all' || m.cats.includes(filter);
     if (!match) return;
+    
     const pct = getMonthProgress(m);
     const card = document.createElement('div');
     card.className = 'month-card';
     card.style.animationDelay = (idx * 0.05) + 's';
 
-    // cats chips html
     const catsHtml = m.cats.map(c => `
-      <span class="cat-chip" style="color:${CAT_COLORS[c]};border-color:${CAT_COLORS[c]}40">
-        ${CAT_LABELS[c]?.split(' ')[0] || c}
+      <span class="cat-chip" style="color:${CAT_COLORS[c] || '#fff'};border-color:${CAT_COLORS[c] || '#fff'}40">
+        ${CAT_LABELS[c] || c}
       </span>`).join('');
 
-    // preview : first goal's first 2 items
     const previewItems = m.goals[0]?.items.slice(0, 2) || [];
     const previewHtml = previewItems.map(it => `
       <div class="preview-item">
@@ -1377,7 +1384,7 @@ function renderCards(filter = 'all') {
     card.innerHTML = `
       <div class="card-accent-bar" style="background:${m.accent}"></div>
       <div class="card-header">
-        <div class="card-num">0${m.id}</div>
+        <div class="card-num">${m.id < 10 ? '0' + m.id : m.id}</div>
         <div class="card-info">
           <p class="card-month">${m.month}</p>
           <p class="card-theme">${m.theme}</p>
@@ -1398,22 +1405,36 @@ function renderCards(filter = 'all') {
   });
 }
 
-// ── DRAWER ──
-let currentMonth = null;
+function renderVision() {
+  const grid = document.getElementById('vision-grid');
+  grid.innerHTML = '';
+  VISION_ITEMS.forEach(v => {
+    const card = document.createElement('div');
+    card.className = 'vision-card' + (v.span ? ' span2' : '');
+    card.innerHTML = `
+      <div class="vision-emoji">${v.emoji}</div>
+      <div class="vision-label">${v.label}</div>
+      <div class="vision-desc">${v.desc}</div>
+      <span class="vision-tag" style="background:${v.color}22;color:${v.color};border:1px solid ${v.color}44">${CAT_LABELS[v.cat] || v.cat}</span>
+    `;
+    grid.appendChild(card);
+  });
+}
 
+// ── MODAL / DRAWER HANDLERS ──
 function openDrawer(m) {
-  currentMonth = m;
   document.getElementById('d-eyebrow').textContent = m.month + ' · Mois ' + m.id;
   document.getElementById('d-title').textContent = m.theme;
-  document.getElementById('d-sub').textContent = m.emoji + '  ' + m.cats.map(c => CAT_LABELS[c]).join(' · ');
+  document.getElementById('d-sub').textContent = m.emoji + '  ' + m.cats.map(c => CAT_LABELS[c] || c).join(' · ');
 
-  // Goals
+  // Goals List Injection
   const goalsEl = document.getElementById('d-goals');
   goalsEl.innerHTML = '';
   m.goals.forEach((g, gi) => {
     const block = document.createElement('div');
     block.className = 'goal-block';
     const color = CAT_COLORS[g.cat] || '#c9a96e';
+    
     let itemsHtml = g.items.map((item, ii) => {
       const done = !!state[m.id]?.[gi]?.[ii];
       return `
@@ -1422,6 +1443,7 @@ function openDrawer(m) {
           <span class="check-text">${item}</span>
         </div>`;
     }).join('');
+    
     block.innerHTML = `
       <div class="goal-block-header">
         <span class="goal-cat-dot" style="background:${color}"></span>
@@ -1430,13 +1452,16 @@ function openDrawer(m) {
       <div class="goal-block-title">${g.label}</div>
       ${itemsHtml}
     `;
+    
     block.querySelectorAll('.check-item').forEach(el => {
       el.addEventListener('click', () => {
         const gi2 = +el.dataset.gi, ii2 = +el.dataset.ii;
         if (!state[m.id]) state[m.id] = {};
         if (!state[m.id][gi2]) state[m.id][gi2] = {};
+        
         state[m.id][gi2][ii2] = !state[m.id][gi2][ii2];
         save();
+        
         el.classList.toggle('done', state[m.id][gi2][ii2]);
         updateProgress(m);
       });
@@ -1444,7 +1469,7 @@ function openDrawer(m) {
     goalsEl.appendChild(block);
   });
 
-  // Weekly
+  // Weekly List Injection
   const weeklyEl = document.getElementById('d-weekly');
   weeklyEl.innerHTML = '';
   m.weekly.forEach((day, di) => {
@@ -1453,12 +1478,14 @@ function openDrawer(m) {
     const tasksPreview = day.tasks.slice(0, 2).join(' · ');
     const wKey = 'w_' + m.id;
     const doneCount = day.tasks.filter((_, ti) => state[wKey]?.[di]?.[ti]).length;
+    
     const tasksHtml = day.tasks.map((t, ti) => {
       const done = !!state[wKey]?.[di]?.[ti];
       return `<div class="day-task-item ${done ? 'done' : ''}" data-di="${di}" data-ti="${ti}">
         <span class="day-task-dot"></span>${t}
       </div>`;
     }).join('');
+    
     row.innerHTML = `
       <div class="day-header">
         <span class="day-name">${day.label}</span>
@@ -1467,9 +1494,11 @@ function openDrawer(m) {
       </div>
       <div class="day-tasks-list">${tasksHtml}</div>
     `;
+    
     row.querySelector('.day-header').addEventListener('click', () => {
       row.classList.toggle('expanded');
     });
+    
     row.querySelectorAll('.day-task-item').forEach(el => {
       el.addEventListener('click', e => {
         e.stopPropagation();
@@ -1477,13 +1506,14 @@ function openDrawer(m) {
         const wk = 'w_' + m.id;
         if (!state[wk]) state[wk] = {};
         if (!state[wk][di2]) state[wk][di2] = {};
+        
         state[wk][di2][ti2] = !state[wk][di2][ti2];
         save();
+        
         el.classList.toggle('done', state[wk][di2][ti2]);
         const cnt = row.querySelector('.day-check-count');
-        const total = day.tasks.length;
         const newDone = day.tasks.filter((_, ti) => state[wk]?.[di2]?.[ti]).length;
-        cnt.textContent = newDone + '/' + total;
+        cnt.textContent = newDone + '/' + day.tasks.length;
       });
     });
     weeklyEl.appendChild(row);
@@ -1496,25 +1526,15 @@ function openDrawer(m) {
 
 function updateProgress(m) {
   const pct = getMonthProgress(m);
-  // update cards
-  document.querySelectorAll('.month-card').forEach(card => {
-    const themeEl = card.querySelector('.card-theme');
-    if (themeEl && themeEl.textContent === m.theme) {
-      card.querySelector('.card-progress-fill').style.width = pct + '%';
-      card.querySelector('.card-progress-pct').textContent = pct + '%';
-    }
-  });
-  // update global
-  const global = getGlobalProgress();
-  document.getElementById('stat-pct').textContent = global + '%';
-  document.getElementById('hero-pct-label').textContent = global + '%';
-  document.getElementById('hero-bar').style.width = global + '%';
+  refreshHero();
+  // Live refresh cards background triggers
+  const activePill = document.querySelector('.pill.active');
+  renderCards(activePill?.dataset.cat || 'all');
 }
 
 function closeDrawer() {
   document.getElementById('overlay').classList.remove('open');
   document.getElementById('drawer').classList.remove('open');
-  // refresh cards
   const activePill = document.querySelector('.pill.active');
   renderCards(activePill?.dataset.cat || 'all');
   refreshHero();
@@ -1538,39 +1558,6 @@ document.getElementById('filter-bar').addEventListener('click', e => {
   renderCards(btn.dataset.cat);
 });
 
-// ── VISION BOARD ──
-const VISION_ITEMS = [
-  { emoji: '🏃‍♀️', label: 'Semi-marathon', desc: 'Annecy, avril 2027 · < 1h50', cat: 'sport', color: '#5dca96', span: false },
-  { emoji: '💪', label: 'Fessiers & corps sculpté', desc: 'Musculation 3×/sem', cat: 'physique', color: '#e07a5f', span: false },
-  { emoji: '🧘‍♀️', label: 'Grand écart', desc: 'Souplesse totale', cat: 'sport', color: '#5dca96', span: false },
-  { emoji: '✨', label: 'Peau lumineuse', desc: 'Skincare quotidienne · acné traitée', cat: 'physique', color: '#e07a5f', span: false },
-  { emoji: '🏍️', label: 'Passerelle moto A', desc: 'Fév. 2027 · enduro & piste', cat: 'perso', color: '#5fa8d3', span: true },
-  { emoji: '🌍', label: 'Voyages & aventures', desc: 'Sardaigne, et bien plus', cat: 'lifestyle', color: '#c9a96e', span: false },
-  { emoji: '💛', label: 'Sérénité intérieure', desc: 'Plus d\'anxiété · confiance en soi', cat: 'mental', color: '#9b8ee8', span: false },
-  { emoji: '💰', label: 'Budget maîtrisé', desc: 'Épargne chaque mois', cat: 'lifestyle', color: '#c9a96e', span: false },
-  { emoji: '🗣️', label: 'Anglais courant', desc: 'B2 oral & écrit', cat: 'perso', color: '#5fa8d3', span: false },
-  { emoji: '💃', label: 'Pole dance', desc: 'Sensualité & force', cat: 'physique', color: '#d4537e', span: false },
-  { emoji: '🥗', label: 'Alimentation SOPK', desc: 'Anti-inflammatoire · rapport sain', cat: 'alimentation', color: '#7bb042', span: true },
-  { emoji: '❤️', label: 'Relation apaisée', desc: 'Sereine avec Max · indépendante', cat: 'mental', color: '#9b8ee8', span: false },
-  { emoji: '💅', label: 'Style affirmé', desc: 'Habillée avec intention chaque jour', cat: 'physique', color: '#e07a5f', span: false },
-];
-
-function renderVision() {
-  const grid = document.getElementById('vision-grid');
-  grid.innerHTML = '';
-  VISION_ITEMS.forEach(v => {
-    const card = document.createElement('div');
-    card.className = 'vision-card' + (v.span ? ' span2' : '');
-    card.innerHTML = `
-      <div class="vision-emoji">${v.emoji}</div>
-      <div class="vision-label">${v.label}</div>
-      <div class="vision-desc">${v.desc}</div>
-      <span class="vision-tag" style="background:${v.color}22;color:${v.color};border:1px solid ${v.color}44">${CAT_LABELS[v.cat]?.split(' ')[0] || v.cat}</span>
-    `;
-    grid.appendChild(card);
-  });
-}
-
 // ── TAB SWITCH ──
 function switchTab(tab) {
   document.getElementById('tab-plan').classList.toggle('active', tab === 'plan');
@@ -1579,17 +1566,20 @@ function switchTab(tab) {
   document.getElementById('view-vision').style.display = (tab === 'vision') ? 'block' : 'none';
 }
 
-// ── INIT ──
+// ── INIT INTERACTION ──
+let totalGoalsCount = 0;
+MONTHS.forEach(m => m.goals.forEach(g => totalGoalsCount += g.items.length));
+document.getElementById('stat-goals').textContent = totalGoalsCount;
+
+// Default Boot Launcher
 renderCards();
 renderVision();
 refreshHero();
 
-// count total goals
-let total = 0;
-MONTHS.forEach(m => m.goals.forEach(g => total += g.items.length));
-document.getElementById('stat-goals').textContent = total;
+// Service Worker setup
+if("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./sw.js").catch(err => console.log(err));
+}
 </script>
-<script>if("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js");</script>
-
 </body>
 </html>
